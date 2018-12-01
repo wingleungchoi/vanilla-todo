@@ -1,7 +1,7 @@
 {
   "name": "vanilla-todo",
   "version": "0.0.0",
-  "description": "--- # local development - python -m SimpleHTTPServer - then http://localhost:8000/index.html is ready to inspect - happy coding :-)",
+  "description": "",
   "main": "null",
   "scripts": {
     "dev": "http-server . -c-1",
