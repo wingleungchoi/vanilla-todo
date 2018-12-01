@@ -1,0 +1,23 @@
+{
+  "name": "vanilla-todo",
+  "version": "0.0.0",
+  "description": "",
+  "main": "null",
+  "scripts": {
+    "dev": "http-server . -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wingleungchoi/vanilla-todo.git"
+  },
+  "author": "wingleungchoi@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wingleungchoi/vanilla-todo/issues"
+  },
+  "homepage": "https://github.com/wingleungchoi/vanilla-todo#readme",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}

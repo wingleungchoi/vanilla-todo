@@ -1,8 +1,11 @@
 # vanilla-todo
 ---
 # local development
-- python -m SimpleHTTPServer
-- then http://localhost:8000/index.html is ready to inspect
+- git clone git@github.com:wingleungchoi/vanilla-todo.git
+- cd vanilla-todo
+- npm i
+- npm run dev
+- http://localhost:8080/index.html is ready to inspect
 - happy coding :-)
 
 ---
