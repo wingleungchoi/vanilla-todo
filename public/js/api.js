@@ -23,15 +23,17 @@ function makeRequest (method, url) {
   });
 }
 
-const fetchHackerNews = async () => {
+const fetchHackerNews = async (topNewsStore, page) => {
+  if (topNewsStore.length >= page * 30) {
+    // no need to fetch as news in topNewsStore matches page requirement
+    return [];
+  }
   const topStoryIdsInString = await makeRequest('GET', 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
-  const topStoryIds = JSON.parse(topStoryIdsInString).slice(0, 30);
+  const topStoryIds = JSON.parse(topStoryIdsInString).slice(topNewsStore.length, page * 30);
   
   const topStories = await Promise.all(topStoryIds.map(async (topStoryId) => {
-    console.log('topStoryId', topStoryId);
     const topStoryInString = await makeRequest('GET', `https://hacker-news.firebaseio.com/v0/item/${topStoryId}.json?print=pretty`);
     const topStory = JSON.parse(topStoryInString);
-    console.log('topStory', topStory);
     return topStory
   }));
   return topStories;
