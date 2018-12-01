@@ -3,7 +3,12 @@ import { createMoreTr, createNewsTr, removeMoreTr } from './helper.js';
 
 window.topNewsStore = [];
 
-const loadPage = async (topNewsStore, page) => {
+const getPageParams = () => {
+  const params = (new URL(document.location)).searchParams;
+  return params.get("p") || 1;
+}
+
+const loadAndShowNews = async (topNewsStore, page) => {
   const topNews = await fetchHackerNews(topNewsStore, page);
   
   const hnMainTableBody = document.getElementById('hnmain-table-body');
@@ -20,14 +25,12 @@ const loadPage = async (topNewsStore, page) => {
 };
 
 const ready = async () => {
-  const params = (new URL(document.location)).searchParams;
-  const initialPage = params.get("p") || 1;
-  await loadPage(window.topNewsStore, Number(initialPage));
+  const initialPage = getPageParams();
+  await loadAndShowNews(window.topNewsStore, Number(initialPage));
 };
 
 document.addEventListener('DOMContentLoaded', ready);
 document.addEventListener('vanilla-load-more-page', async () => {
-  const params = (new URL(document.location)).searchParams;
-  const page = params.get("p") || 1;
-  await loadPage(window.topNewsStore, Number(page));
+  const page = getPageParams();
+  await loadAndShowNews(window.topNewsStore, Number(page));
 });
