@@ -1,5 +1,7 @@
 # vanilla-todo
 ---
+- Live Demo: http://vanilla-todo.s3-website.eu-west-2.amazonaws.com
+---
 # Local development
 - git clone git@github.com:wingleungchoi/vanilla-todo.git
 - cd vanilla-todo
