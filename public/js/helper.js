@@ -1,6 +1,9 @@
+import { loadMorePage } from './eventListeners.js'
+
+const MORE_NEWS_TR_ID = 'more-news-tr';
+
 const timeAgo = (timeStamp) => {
   const secondsAgo = Math.floor(Date.now() / 1000) - timeStamp;
-  console.log('secondsAgo', secondsAgo);
   if (secondsAgo <= 60) {
     return 'recently';
   }
@@ -38,6 +41,7 @@ const extractHostname = (url) => {
 }
 
 const extractRootDomain = (url) => {
+  if (typeof url !== 'string') { return ''};
   // credit: https://stackoverflow.com/questions/8498592/extract-hostname-name-from-string
   let domain = extractHostname(url);
   const splitArr = domain.split('.');
@@ -91,6 +95,26 @@ const createNewsTr = ({news, position}) => {
   return tr;
 };
 
+const createMoreTr = (oldPage) => {
+  const newsPage = ((typeof oldPage === 'number') && oldPage >= 2) ? oldPage + 1 : 2;
+  const tr = document.createElement('tr');
+  tr.setAttribute('id', MORE_NEWS_TR_ID);
+  tr.addEventListener('click', loadMorePage(newsPage));
+  const innerHtml = `
+  <td class="title">
+    <a href="?p=${newsPage}" class="morelink" rel="nofollow">&nbsp; &nbsp; More</a>
+  </td>`;
+  tr.innerHTML = innerHtml;
+  return tr;
+}
+
+const removeMoreTr  = () => {
+  const tr = document.getElementById(MORE_NEWS_TR_ID)
+  tr && tr.remove();
+}
+
 export {
-  createNewsTr
+  createMoreTr,
+  createNewsTr,
+  removeMoreTr
 };
