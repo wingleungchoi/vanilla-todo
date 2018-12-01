@@ -25,7 +25,7 @@ function makeRequest (method, url) {
 
 const fetchHackerNews = async () => {
   const topStoryIdsInString = await makeRequest('GET', 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
-  const topStoryIds = JSON.parse(topStoryIdsInString).slice(0, 20);
+  const topStoryIds = JSON.parse(topStoryIdsInString).slice(0, 30);
   
   const topStories = await Promise.all(topStoryIds.map(async (topStoryId) => {
     console.log('topStoryId', topStoryId);
